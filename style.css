@@ -1,0 +1,160 @@
+@font-face {
+    font-family: 'Clash Display';
+    src: url('res/ClashDisplay-Variable.ttf');
+}
+
+@keyframes move_up {
+    0% {
+        opacity: 0;
+        top: 50%;
+        transform: translate(0, -50%);
+    }
+
+    40% {
+        opacity: 1;
+        top: 50%;
+        transform: translate(0, -50%);
+    }
+
+    100% {
+        top: 10%;
+        transform: translate(0, 0);
+    }
+}
+
+html {
+    height: 100vh;
+    width: 100%;
+}
+
+body {
+    font-family: 'Clash Display';
+    font-weight: normal;
+    color: white;
+
+
+    background: url('res/wallpaper.png') no-repeat center center;
+    background-size: cover;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0;
+    height: 100vh;
+}
+
+
+.topbox {
+    position: absolute;
+    animation: move_up 2.5s ease forwards;
+}
+
+.username {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 4rem;
+    font-weight: 600;
+}
+
+.description {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.content {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.glass_tile {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 20px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+
+    box-shadow: 0px 1px 30px 1px rgba(0, 0, 0, 0.15);
+
+    transition: 0.5s ease;
+}
+
+.glass_tile:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+
+
+}
+
+.glass_tile.nointeract:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.projects_title {
+    font-size: 1.7rem;
+    margin: 10px;
+    margin-bottom: 20px;
+
+    text-align: center;
+    font-weight: 500;
+}
+
+.project {
+    margin: 10px;
+
+    font-size: 1.2rem;
+    display: flex;
+    gap: 10px;
+}
+
+.project_title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.openlink {
+    content: url('res/open_in_new.svg');
+    background-size: contain;
+    flex-shrink: 0;
+}
+
+.code {
+    content: url('res/code.svg');
+    background-size: contain;
+    flex-shrink: 0;
+}
+
+.github {
+    content: url('res/github-logo.svg');
+    background-size: contain;
+    flex-shrink: 0;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+    display: inline;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 10; /* on top of other content */
+}
+
+.footer_content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+    padding: 20px;
+}
+
+.show {
+    opacity: 1;
+}

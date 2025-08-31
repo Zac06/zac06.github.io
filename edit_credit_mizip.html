@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Zac06's Landing page</title>
+</head>
+
+<body>
+    <div class="topbox" id="topbox">
+        <div class="username">MiZip Credit Editor</div>
+
+        <div class="description">
+            This tool is an online demo which provides a quick way to edit the credit data contained in MiZip vending
+            machines keys.
+        </div>
+
+    </div>
+
+    <div class="content" id="content">
+        <div class="projects_title glass_tile nointeract">
+            Working on it
+        </div>
+
+    </div>
+
+
+    <script>
+        const username = document.getElementById('topbox');
+        const content = document.getElementById('content');
+
+        username.addEventListener('animationend', () => {
+            content.classList.add('show');
+        });
+    </script>
+
+</body>
+
+</html>
