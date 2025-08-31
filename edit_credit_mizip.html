@@ -51,24 +51,13 @@
 
     </div>
 
-    <div class="footer">
-        <div class="description">
-            Links
-        </div>
-        <div class="footer_content">
-            <a href="http://github.com/" target="_blank">
-                <div class="glass_tile github"></div>
-            </a>
-
-        </div>
-    </div>
-
     <script>
         const username = document.getElementById('topbox');
         const content = document.getElementById('content');
 
         username.addEventListener('animationend', () => {
             content.classList.add('show');
+            content.style.marginTop = username.offsetHeight + 'px';
         });
     </script>
 
