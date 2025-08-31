@@ -1,3 +1,7 @@
+:root {
+    color-scheme: dark;
+}
+
 @font-face {
     font-family: 'Clash Display';
     src: url('res/ClashDisplay-Variable.ttf');
