@@ -3,44 +3,23 @@
     src: url('res/ClashDisplay-Variable.ttf');
 }
 
-@keyframes move_up {
-    0% {
-        opacity: 0;
-        top: 40%;
-    }
-
-    40% {
-        opacity: 1;
-        top: 40%;
-    }
-
-    100% {
-        top: 5%;
-    }
-}
-
-html {
-    height: 100vh;
-    width: 100%;
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* ✅ Prevent scrolling if everything fits */
 }
 
 body {
     font-family: 'Clash Display';
     font-weight: normal;
     color: white;
-    margin: 0;
-    margin-left: 10px;
-    margin-right: 10px;
-
-
     background: url('res/wallpaper.png') no-repeat center center;
     background-size: cover;
 
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    height: 100vh;
+
 }
 
 a{
@@ -69,8 +48,19 @@ input[type="number"] {
 }
 
 .topbox {
-    position: absolute;
-    animation: move_up 2.5s ease forwards;
+    position: relative;
+    margin: 30px;
+
+    /*border: 1px solid white;*/
+}
+
+.centralbox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+
+    /*border: 1px solid green;*/
 }
 
 .username {
@@ -88,8 +78,16 @@ input[type="number"] {
 }
 
 .content {
-    opacity: 0;
+    opacity: 1;
     transition: opacity 1s ease;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    /*border: 1px solid white;*/
+    
 }
 
 .glass_tile {
@@ -119,6 +117,7 @@ input[type="number"] {
 
     text-align: center;
     font-weight: 500;
+    width: 100%;
 }
 
 .project {
@@ -158,8 +157,7 @@ input[type="number"] {
 }
 
 .footer {
-    position: absolute;
-    bottom: 0;
+    margin-top: auto;
     width: 100%;
 
     display: flex;
@@ -167,8 +165,6 @@ input[type="number"] {
     align-items: center;
     flex-direction: column;
     margin-top: 40px;
-
-    z-index: 10; /* on top of other content */
 }
 
 .footer_content{
@@ -193,4 +189,8 @@ input[type="number"] {
     text-align: center;
     box-sizing: border-box;
     resize:none;
+}
+
+.nobrad {
+    border-radius: 0;
 }

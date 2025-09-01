@@ -10,7 +10,9 @@
     <title>MiZip credit editor</title>
 
     <script>
+        function validate() {
 
+        }
     </script>
 </head>
 
@@ -20,46 +22,51 @@
 
         <div class="description">
             This tool is an online demo which provides a quick way to edit the credit data contained in MiZip vending
-            machines keys. 
+            machines keys.
             <a href="http://github.com/Zac06/edit_credit_mizip" target="_blank">Go to the source</a>
         </div>
 
     </div>
 
-    <div class="content" id="content">
-        <div class="project">
-            <form name="calculator" onsubmit="calculate()">
-                <div class="description">
-                    Input your MiZip key Sector 2 here (3 blocks)
-                </div>
-                <br>
-                <textarea class="glass_tile mizip_input" name="sector" rows="3" cols="32"
-                    placeholder="3 rows, 16 hex bytes each"></textarea>
-                <br><br>
-                <div class="description">
-                    Input your new credit here (max. 655.35)
-                </div>
-                <br>
-                <input type="number" name="credit" class="glass_tile mizip_input" step="0.01" placeholder="Put the new credit here...">
-                <br><br>
-                <input type="submit" value="Calculate" class="glass_tile mizip_input">
-                <br><br>
-                <input type="reset" value="Reset" class="glass_tile mizip_input">
-            </form>
+    <div class="centralbox">
+        <div class="content" id="content">
+            <div class="project">
+                <form name="calculator" onsubmit="calculate()">
+                    <div class="description">
+                        Input your MiZip key Sector 2 here (3 blocks)
+                    </div>
+                    <br>
+                    <textarea class="glass_tile mizip_input" name="sector" rows="3" cols="32"
+                        placeholder="3 rows, 16 hex bytes each"></textarea>
+                    <br><br>
+                    <div class="description">
+                        Input your new credit here (max. 655.35)
+                    </div>
+                    <br>
+                    <input type="number" name="credit" class="glass_tile mizip_input" step="0.01"
+                        placeholder="Put the new credit here...">
+                    <br><br>
+                    <input type="submit" value="Calculate" class="glass_tile mizip_input">
+                    <br><br>
+                    <input type="reset" value="Reset" class="glass_tile mizip_input">
+                </form>
+            </div>
+
+
         </div>
-
-
     </div>
 
-    <script>
-        const username = document.getElementById('topbox');
-        const content = document.getElementById('content');
+    <div class="footer">
+        <div class="description">
+            Links
+        </div>
+        <div class="footer_content">
+            <a href="http://github.com/" target="_blank">
+                <div class="glass_tile github"></div>
+            </a>
 
-        username.addEventListener('animationend', () => {
-            content.classList.add('show');
-            content.style.marginTop = username.offsetHeight + 'px';
-        });
-    </script>
+        </div>
+    </div>
 
 </body>
 
