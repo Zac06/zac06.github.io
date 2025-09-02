@@ -14,21 +14,21 @@
             return /^[0-9A-Fa-f]+$/.test(str);
         }
 
-        function calculate(){
-            const sector=document.forms['calculator'].sector.value;
-            const blocks=sector.split(/\r?\n/);
+        function calculate() {
+            const sector = document.forms['calculator'].sector.value;
+            const blocks = sector.split(/\r?\n/);
 
-            if(document.forms['calculator'].credit.value===''){
+            if (document.forms['calculator'].credit.value === '') {
                 alert('Please insert a new credit value.');
                 return false;
             }
 
-            let newcred=parseFloat(document.forms['calculator'].credit.value);
-            newcred*=100;
-            newcred=Math.round(newcred);
+            let newcred = parseFloat(document.forms['calculator'].credit.value);
+            newcred *= 100;
+            newcred = Math.round(newcred);
 
-            for(let i=0; i<blocks.length; i++){
-                if(blocks[i]===''){
+            for (let i = 0; i < blocks.length; i++) {
+                if (blocks[i] === '') {
                     blocks.splice(i, 1);
                     i--;
                 }
@@ -36,21 +36,21 @@
 
             //console.log(blocks);
 
-            if(blocks.length!=3){
+            if (blocks.length != 3) {
                 alert('Please insert the 3 sectors required.');
                 return false;
             }
 
             //console.log(newcred);
-            if(newcred<0||newcred>65535){
+            if (newcred < 0 || newcred > 65535) {
                 alert('Please insert a new credit value between 0 and 655.35.');
                 return false;
             }
 
-            if(!(isHex(blocks[0])&&isHex(blocks[1])&&isHex(blocks[2])
-                &&blocks[0].length==32&&blocks[1].length==32&&blocks[2].length==32)){
-                    alert('Please insert 3 hex sectors, 16 bytes each (32 hex characters).');
-                    return false;
+            if (!(isHex(blocks[0]) && isHex(blocks[1]) && isHex(blocks[2])
+                && blocks[0].length == 32 && blocks[1].length == 32 && blocks[2].length == 32)) {
+                alert('Please insert 3 hex sectors, 16 bytes each (32 hex characters).');
+                return false;
             }
 
 
@@ -64,71 +64,75 @@
                 blocks[2].match(/.{2}/g).map(byte => parseInt(byte, 16))
             );
 
-            let block0_price=block_0[2]<<8 | block_0[1];
-            let block0_xor=block_0[3];
-            let block0_opno=block_0[15];
+            let block0_price = block_0[2] << 8 | block_0[1];
+            let block0_xor = block_0[3];
+            let block0_opno = block_0[15];
 
-            let block1_price=block_1[2]<<8 | block_1[1];
-            let block1_xor=block_1[3];
-            let block1_opno=block_1[15];
+            let block1_price = block_1[2] << 8 | block_1[1];
+            let block1_xor = block_1[3];
+            let block1_opno = block_1[15];
 
-            let block2_curr=block_2[0];
-            let block2_cur_opno=block_2[1];
+            let block2_curr = block_2[0];
+            let block2_cur_opno = block_2[1];
             let curcred;
-            let newxor=(newcred&0xFF)^(newcred>>8);
+            let newxor = (newcred & 0xFF) ^ (newcred >> 8);
 
-            if(block2_cur_opno==block0_opno){
-                curcred=block0_price/100;
-            }else{
-                curcred=block1_price/100;
+            if (block2_cur_opno == block0_opno) {
+                curcred = block0_price / 100;
+            } else {
+                curcred = block1_price / 100;
             }
 
-            if(confirm(`The current credit is ${curcred}. Do you wish to continue?`)){
+            if (confirm(`The current credit is ${curcred}. Do you wish to continue?`)) {
                 block2_cur_opno++;
-                block2_cur_opno&=0xFF;
+                block2_cur_opno &= 0xFF;
 
-                if(block2_curr==0x55){
-                    block0_opno=block2_cur_opno;
-                    block0_price=newcred;
-                    block0_xor=newxor;
+                if (block2_curr == 0x55) {
+                    block0_opno = block2_cur_opno;
+                    block0_price = newcred;
+                    block0_xor = newxor;
 
-                    block2_curr=0xAA;
-                }else{
-                    block1_opno=block2_cur_opno;
-                    block1_price=newcred;
-                    block1_xor=newxor;
+                    block2_curr = 0xAA;
+                } else {
+                    block1_opno = block2_cur_opno;
+                    block1_price = newcred;
+                    block1_xor = newxor;
 
-                    block2_curr=0x55;
+                    block2_curr = 0x55;
                 }
+
+
+                let outstring = '';
+
+                outstring += '00';
+                let lsb = block0_price & 0xFF;
+                let hsb = (block0_price >> 8) & 0xFF;
+                outstring += lsb.toString(16).toUpperCase().padStart(2, '0');
+                outstring += hsb.toString(16).toUpperCase().padStart(2, '0');
+                outstring += block0_xor.toString(16).toUpperCase().padStart(2, '0');
+                outstring += '0000000000000000000000';
+                outstring += block0_opno.toString(16).toUpperCase().padStart(2, '0');
+                outstring += '\n';
+
+                outstring += '00';
+                lsb = block1_price & 0xFF;
+                hsb = (block1_price >> 8) & 0xFF;
+                outstring += lsb.toString(16).toUpperCase().padStart(2, '0');
+                outstring += hsb.toString(16).toUpperCase().padStart(2, '0');
+                outstring += block1_xor.toString(16).toUpperCase().padStart(2, '0');
+                outstring += '0000000000000000000000';
+                outstring += block1_opno.toString(16).toUpperCase().padStart(2, '0');
+                outstring += '\n';
+
+                outstring += block2_curr.toString(16).toUpperCase().padStart(2, '0');
+                outstring += block2_cur_opno.toString(16).toUpperCase().padStart(2, '0');
+                outstring += '0000000000000000000000000000';
+
+                document.forms['calculator'].sector.value = outstring;
+
+                alert('Check the sector. It has been updated with the new price.');
+
             }
-
-            let outstring='';
-            
-            outstring+='00';
-            let lsb=block0_price&0xFF;
-            let hsb=(block0_price>>8)&0xFF;
-            outstring+=lsb.toString(16).toUpperCase().padStart(2, '0');
-            outstring+=hsb.toString(16).toUpperCase().padStart(2, '0');
-            outstring+=block0_xor.toString(16).toUpperCase().padStart(2, '0');
-            outstring+='0000000000000000000000';
-            outstring+=block0_opno.toString(16).toUpperCase().padStart(2, '0');
-            outstring+='\n';
-
-            outstring+='00';
-            lsb=block1_price&0xFF;
-            hsb=(block1_price>>8)&0xFF;
-            outstring+=lsb.toString(16).toUpperCase().padStart(2, '0');
-            outstring+=hsb.toString(16).toUpperCase().padStart(2, '0');
-            outstring+=block1_xor.toString(16).toUpperCase().padStart(2, '0');
-            outstring+='0000000000000000000000';
-            outstring+=block1_opno.toString(16).toUpperCase().padStart(2, '0');
-            outstring+='\n';
-
-            outstring+=block2_curr.toString(16).toUpperCase().padStart(2, '0');
-            outstring+=block2_cur_opno.toString(16).toUpperCase().padStart(2, '0');
-            outstring+='0000000000000000000000000000';
-
-            document.forms['calculator'].sector.value=outstring;
 
             return false;
         }
@@ -143,7 +147,7 @@
             This tool is an online demo which provides a quick way to edit the credit data contained in MiZip vending
             machines keys.
             <a href="http://github.com/Zac06/edit_credit_mizip" target="_blank">Go to the source</a>
-        </div> 
+        </div>
 
     </div>
 
