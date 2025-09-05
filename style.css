@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Clash Display';
-    src: url('res/ClashDisplay-Variable.ttf');
+    src: url('/res/clashdisplay.ttf');
 }
 
 html, body {
@@ -14,7 +14,7 @@ body {
     font-family: 'Clash Display';
     font-weight: normal;
     color: white;
-    background: url('res/wallpaper.png') no-repeat center center;
+    background: url('/res/wallpaper.png') no-repeat center center;
     background-size: cover;
 
     display: flex;
@@ -128,6 +128,8 @@ input[type="number"] {
     align-items: center;
     justify-content: center;
     gap: 10px;
+
+    width: 100%;
 }
 
 .project_title {
@@ -136,28 +138,32 @@ input[type="number"] {
     align-items: center;
     padding-left: 30px;
     padding-right: 30px;
+    
+    width: 100%;
 }
 
 .openlink {
-    content: url('res/open_in_new.svg');
+    content: url('/res/open_in_new.svg');
     background-size: contain;
     flex-shrink: 0;
 }
 
 .code {
-    content: url('res/code.svg');
+    content: url('/res/code.svg');
     background-size: contain;
     flex-shrink: 0;
 }
 
 .github {
-    content: url('res/github-logo.svg');
+    content: url('/res/github-logo.svg');
     background-size: contain;
     flex-shrink: 0;
 }
 
 .footer {
     margin-top: auto;
+    /*bottom: 0;
+    position: absolute;*/
     width: 100%;
 
     display: flex;
@@ -165,6 +171,8 @@ input[type="number"] {
     align-items: center;
     flex-direction: column;
     margin-top: 40px;
+
+    padding-bottom: 5px;
 }
 
 .footer_content{
