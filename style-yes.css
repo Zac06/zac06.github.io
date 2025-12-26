@@ -1,0 +1,89 @@
+@font-face {
+    font-family: 'montserrat';
+    src: url(res/montserrat.ttf);
+}
+
+html, body {
+    height: 100%;
+    font-family: 'montserrat';
+    color: white;
+}
+
+body {
+    background-image: linear-gradient(to bottom left, #1152d4, #212f5c);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.title {
+    font-weight: 900;
+    font-size: 8em;
+}
+
+.titlebox {
+    text-align: center;
+    margin-top: 5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: 10em;
+}
+
+.yesimg {
+    height: 100%;
+    margin-right: 2em;
+}
+
+.mockupcont {
+    text-align: center;
+    margin-top: 7em;
+    margin-bottom: 7em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mockup {
+    width: 75%
+}
+
+.buttonscont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 2em;
+    width: 100%;
+
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+a{
+    text-decoration: none;
+}
+
+.button {
+    background-color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 1em 2em;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #1152d4;
+    text-decoration: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 1em;
+}
+
+.buttonicon {
+    height: 1.5em;
+    margin-right: 0.5em;
+}
