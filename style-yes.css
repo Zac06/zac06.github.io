@@ -19,7 +19,7 @@ body {
 
 .title {
     font-weight: 900;
-    font-size: 8em;
+    font-size: clamp(3rem, 10vw, 8rem);
 }
 
 .titlebox {
@@ -30,10 +30,12 @@ body {
     align-items: center;
     flex-direction: row;
     height: 10em;
+
+    max-width: 100%;
 }
 
 .yesimg {
-    height: 100%;
+    height: clamp(3rem, 10vw, 8rem);
     margin-right: 2em;
 }
 
@@ -56,9 +58,8 @@ body {
     align-items: center;
     gap: 2em;
     width: 100%;
-    flex-wrap: nowrap;
-    flex-direction: row;
     margin-bottom: 10em;
+    flex-wrap: wrap;
 }
 
 a{
