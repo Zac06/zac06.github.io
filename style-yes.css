@@ -54,12 +54,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
     gap: 2em;
     width: 100%;
-
     flex-wrap: nowrap;
     flex-direction: row;
+    margin-bottom: 10em;
 }
 
 a{
@@ -86,4 +85,8 @@ a{
 .buttonicon {
     height: 1.5em;
     margin-right: 0.5em;
+}
+
+.footer {
+    width: 100%;
 }
