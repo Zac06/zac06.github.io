@@ -10,7 +10,6 @@
 
     <div class="titlebox">
         <img src="res/titlelogo.png" alt="yes-app" class="yesimg">
-        
         <div class="title">App</div>
     </div>
 
@@ -19,21 +18,49 @@
     </div>
 
     <div class="buttonscont">
-        <a href="https://github.com/Zac06/yes-app/releases/download/1.0.0/app-universal-release.apk" target="_blank">
+        <a id="downloadLink" href="#" target="_blank">
             <div class="button">
                 <img src="res/android.png" alt="download" class="buttonicon">Download
             </div>
-
-
         </a>
-        <a href="https://github.com/zac06/yes-app" target="_blank">
+        <a href="https://github.com/Zac06/yes-app" target="_blank">
             <div class="button">
                 <img src="res/code_blue.png" alt="source" class="buttonicon">Source
             </div>
         </a>
-
-        
     </div>
+
     <div class="footer">&ZeroWidthSpace;</div>
+
+    <script>
+        const owner = 'Zac06';
+        const repo = 'yes-app';
+
+        fetch(`https://api.github.com/repos/${owner}/${repo}/releases/latest`)
+            .then(res => res.json())
+            .then(data => {
+                if (!data.assets || data.assets.length === 0) return;
+
+                // 1️⃣ Try to find a "universal" APK
+                let asset = data.assets.find(a =>
+                    a.name.toLowerCase().includes('universal') &&
+                    a.name.toLowerCase().endsWith('.apk')
+                );
+
+                // 2️⃣ Fallback to app-release.apk
+                if (!asset) {
+                    asset = data.assets.find(a =>
+                        a.name.toLowerCase() === 'app-release.apk'
+                    );
+                }
+
+                if (asset) {
+                    const link = document.getElementById('downloadLink');
+                    link.href = asset.browser_download_url;
+                }
+            })
+            .catch(err => console.error('GitHub API error:', err));
+    </script>
+
 </body>
 </html>
