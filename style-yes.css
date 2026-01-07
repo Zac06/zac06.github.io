@@ -56,14 +56,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     gap: 2em;
     width: 100%;
-    margin-bottom: 10em;
+    margin-bottom: 1em;
     flex-wrap: wrap;
 }
 
 a{
     text-decoration: none;
+    
+}
+
+.otherdown {
+    color: white;
+    text-decoration: underline;
+    margin: 0;
 }
 
 .button {
@@ -75,7 +83,6 @@ a{
     font-weight: 700;
     color: #1152d4;
     text-decoration: none;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -89,5 +96,6 @@ a{
 }
 
 .footer {
+    margin-top: 10em;
     width: 100%;
 }
